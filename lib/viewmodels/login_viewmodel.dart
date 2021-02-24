@@ -1,15 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:skyline_template_app/viewmodels/base_viewmodel.dart';
 import 'package:skyline_template_app/core/enums/view_state.dart';
 import 'package:skyline_template_app/locator.dart';
 import 'package:skyline_template_app/core/services/navigation_service.dart';
 import 'package:skyline_template_app/core/utilities/route_names.dart';
 
-class HomeViewModel extends BaseViewModel {
+class LoginViewModel extends BaseViewModel {
   final  _navigationService = locator<NavigationService>();
   String _textInput = "Skyline Default Text";
   String get myTextInput => _textInput;
 
-  HomeViewModel() {
+  LoginViewModel() {
     print("HomeViewModel Constructor Called()");
     setState(ViewState.Busy);
     try {
@@ -18,23 +19,23 @@ class HomeViewModel extends BaseViewModel {
       setState(ViewState.Error);
     }
     setState(ViewState.Idle);
+  }
+
+  void _initMethod(){
+    for (int i = 0; i < 2; i++) {
+      print("HomeViewModel Init() function called printing $i iteration of my for loop");
     }
-    
-    void _initMethod(){
-      for (int i = 0; i < 2; i++) {
-        print("HomeViewModel Init() function called printing $i iteration of my for loop");
-      }
-    }
+  }
 
   void setInputText(String inputString){
     _textInput = inputString;
     notifyListeners();
   }
 
-  void routeToLoginView() {
-    _navigationService.navigateTo(LoginViewRoute);
+  void routeToTeacherView() {
+    _navigationService.navigateTo(TeacherViewRoute);
   }
-  void routeToRegistrationView() {
-    _navigationService.navigateTo(RegistrationViewRoute);
+  void routeToHomeView() {
+    _navigationService.navigateTo(HomeViewRoute);
   }
 }

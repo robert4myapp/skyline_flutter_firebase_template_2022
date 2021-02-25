@@ -7,7 +7,9 @@ import 'package:flutter/widgets.dart';
 
 
 void main() async {
-  await setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
+  //await setupLocator();
   //runApp(MyApp());
   runApp(MySkylineApp());
 }

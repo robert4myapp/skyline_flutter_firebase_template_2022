@@ -6,30 +6,16 @@ import 'package:skyline_template_app/core/utilities/route_names.dart';
 
 class HomeViewModel extends BaseViewModel {
   final  _navigationService = locator<NavigationService>();
-  String _textInput = "Skyline Default Text";
-  String get myTextInput => _textInput;
 
   HomeViewModel() {
-    print("HomeViewModel Constructor Called()");
     setState(ViewState.Busy);
     try {
-      _initMethod();
+      print("HomeViewModel Constructor Called()");
     } catch (e) {
       setState(ViewState.Error);
     }
     setState(ViewState.Idle);
     }
-    
-    void _initMethod(){
-      for (int i = 0; i < 2; i++) {
-        print("HomeViewModel Init() function called printing $i iteration of my for loop");
-      }
-    }
-
-  void setInputText(String inputString){
-    _textInput = inputString;
-    notifyListeners();
-  }
 
   void routeToLoginView() {
     _navigationService.navigateTo(LoginViewRoute);

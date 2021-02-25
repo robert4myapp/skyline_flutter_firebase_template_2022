@@ -13,10 +13,10 @@ class LoginView extends StatelessWidget {
       child: Consumer<LoginViewModel>(
         builder: (context, model, child) => SafeArea(
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: kColorSkylineGreen,
             body: Column(
               children: [
-
                 Container(child: IconButton(icon: Icon(Icons.arrow_back,color: kColorSkylineWhite,), onPressed: ()=> model.routeToHomeView()),alignment: Alignment.topLeft,),
                 SizedBox(
                   height: 140.0,

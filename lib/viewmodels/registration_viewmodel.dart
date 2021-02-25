@@ -1,34 +1,21 @@
 import 'package:skyline_template_app/viewmodels/base_viewmodel.dart';
-import 'package:skyline_template_app/core/enums/view_state.dart';
 import 'package:skyline_template_app/locator.dart';
 import 'package:skyline_template_app/core/services/navigation_service.dart';
 import 'package:skyline_template_app/core/utilities/route_names.dart';
 
 class RegistrationViewModel extends BaseViewModel {
   final  _navigationService = locator<NavigationService>();
-  String _textInput = "Skyline Default Text";
-  String get myTextInput => _textInput;
+  String _email;
+  String get email => _email;
+  String _password;
+  String get password => _password;
 
-  RegistrationViewModel() {
-    print("HomeViewModel Constructor Called()");
-    setState(ViewState.Busy);
-    try {
-      _initMethod();
-    } catch (e) {
-      setState(ViewState.Error);
-    }
-    setState(ViewState.Idle);
+  void setEmailAddress(String inputString){
+    _email = inputString;
   }
 
-  void _initMethod(){
-    for (int i = 0; i < 2; i++) {
-      print("HomeViewModel Init() function called printing $i iteration of my for loop");
-    }
-  }
-
-  void setInputText(String inputString){
-    _textInput = inputString;
-    notifyListeners();
+  void setPassword(String inputString){
+    _password = inputString;
   }
 
   void routeToTeacherView() {
@@ -36,5 +23,9 @@ class RegistrationViewModel extends BaseViewModel {
   }
   void routeToHomeView() {
     _navigationService.navigateTo(HomeViewRoute);
+  }
+  RegistrationViewModel() {
+    print("Registration Constructor Called()");
+
   }
 }

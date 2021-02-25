@@ -13,6 +13,7 @@ class RegistrationView extends StatelessWidget {
       child: Consumer<RegistrationViewModel>(
         builder: (context, model, child) => SafeArea(
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: kColorSkylineGreen,
             body: Column(
               children: [
@@ -31,7 +32,7 @@ class RegistrationView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: TextField(
                     onChanged: (value) {
-                      //Do something with the user input.
+                      model.setEmailAddress(value);
                     },
                     decoration: InputDecoration(filled: true,fillColor: kColorSkylineWhite,
                       hintText: 'Enter your email',
@@ -60,7 +61,7 @@ class RegistrationView extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: TextField(
                     onChanged: (value) {
-                      //Do something with the user input.
+                      model.setPassword(value);
                     },
                     decoration: InputDecoration(filled: true,fillColor: kColorSkylineWhite,
                       hintText: 'Enter your password.',
@@ -93,7 +94,8 @@ class RegistrationView extends StatelessWidget {
                     elevation: 5.0,
                     child: MaterialButton(
                       onPressed: () {
-                        //Implement login functionality.
+                       print(model.email);
+                       print(model.password);
                       },
                       minWidth: 330.0,
                       height: 42.0,

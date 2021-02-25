@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:skyline_template_app/viewmodels/base_viewmodel.dart';
 import 'package:skyline_template_app/core/enums/view_state.dart';
 import 'package:skyline_template_app/locator.dart';

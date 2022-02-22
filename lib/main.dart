@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:skyline_template_app/ui/home_view.dart';
 import 'package:skyline_template_app/core/services/navigation_service.dart';
 import 'package:skyline_template_app/core/utilities/router.dart' as router;
+import 'package:skyline_template_app/ui/login_view.dart';
 import 'locator.dart';
-import 'package:flutter/widgets.dart';
 
 
 void main() async {
@@ -21,7 +21,7 @@ class MySkylineApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       navigatorKey: locator<NavigationService>().navigationKey,
       onGenerateRoute: (settings) => router.Router.generateRoute(context, settings),
-      home: HomeView(),
+      home: LoginView(),
     );
   }
 }

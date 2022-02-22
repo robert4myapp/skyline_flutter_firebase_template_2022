@@ -11,6 +11,19 @@ class RegistrationViewModel extends BaseViewModel {
   String _password;
   String get password => _password;
 
+  Future init() async {
+    print("Registration ViewModel init()");
+    setState(ViewState.Busy);
+    try {
+   print('try reg');
+    } catch (e) {
+      setState(ViewState.Error);
+    }
+    setState(ViewState.Idle);
+
+  }
+
+
   void setEmailAddress(String inputString) {
     _email = inputString;
   }

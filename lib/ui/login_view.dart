@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:skyline_template_app/core/utilities/constants.dart';
 import 'package:skyline_template_app/viewmodels/login_viewmodel.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:skyline_template_app/locator.dart';
+import 'package:stacked/stacked.dart';
 
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LoginViewModel>(
-      create: (context) => locator<LoginViewModel>(),
-      child: Consumer<LoginViewModel>(
-        builder: (context, model, child) => SafeArea(
-          child: Scaffold(
+    return ViewModelBuilder<LoginViewModel>.reactive(
+      disposeViewModel: false,
+      viewModelBuilder: () => locator<LoginViewModel>(),
+      onModelReady: (viewModel) => viewModel.init(),
+      builder: (context, viewModel, child) => Scaffold(
             backgroundColor: kColorSkylineGreen,
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(child: IconButton(icon: Icon(Icons.arrow_back,color: kColorSkylineWhite,), onPressed: ()=> model.routeToHomeView()),alignment: Alignment.topLeft,),
+                  Container(child: IconButton(icon: Icon(Icons.arrow_back,color: kColorSkylineWhite,), onPressed: ()=> viewModel.routeToHomeView()),alignment: Alignment.topLeft,),
                   SizedBox(
                     height: 140.0,
                   ),
@@ -114,8 +114,6 @@ class LoginView extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+      );
   }
 }

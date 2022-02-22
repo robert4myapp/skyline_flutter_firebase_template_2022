@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:skyline_template_app/core/utilities/constants.dart';
 import 'package:skyline_template_app/viewmodels/registration_viewmodel.dart';
-import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:skyline_template_app/locator.dart';
 
 class RegistrationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RegistrationViewModel>(
-      create: (context) => locator<RegistrationViewModel>(),
-      child: Consumer<RegistrationViewModel>(
-        builder: (context, model, child) => SafeArea(
-          child: Scaffold(
+  return ViewModelBuilder<RegistrationViewModel>.reactive(
+  disposeViewModel: false,
+  viewModelBuilder: () => locator<RegistrationViewModel>(),
+  onModelReady: (viewModel) => viewModel.init(),
+  builder: (context, viewModel, child) => Scaffold(
             backgroundColor: kColorSkylineGreen,
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(child: IconButton(icon: Icon(Icons.arrow_back,color: kColorSkylineWhite,), onPressed: ()=> model.routeToHomeView()),alignment: Alignment.topLeft,),
+                  Container(child: IconButton(icon: Icon(Icons.arrow_back,color: kColorSkylineWhite,), onPressed: ()=> viewModel.routeToHomeView()),alignment: Alignment.topLeft,),
                   SizedBox(
                     height: 140.0,
                   ),
@@ -34,7 +34,7 @@ class RegistrationView extends StatelessWidget {
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) {
-                        model.setEmailAddress(value);
+                        viewModel.setEmailAddress(value);
                       },
                       decoration: InputDecoration(filled: true,fillColor: kColorSkylineWhite,
                         hintText: 'Enter your email',
@@ -65,7 +65,7 @@ class RegistrationView extends StatelessWidget {
                       textAlign: TextAlign.center,
                       obscureText: true,
                       onChanged: (value) {
-                        model.setPassword(value);
+                        viewModel.setPassword(value);
                       },
                       decoration: InputDecoration(filled: true,fillColor: kColorSkylineWhite,
                         hintText: 'Enter your password.',
@@ -98,8 +98,8 @@ class RegistrationView extends StatelessWidget {
                       elevation: 5.0,
                       child: MaterialButton(
                         onPressed: () {
-                         print(model.email);
-                         print(model.password);
+                         print(viewModel.email);
+                         print(viewModel.password);
                         },
                         minWidth: 330.0,
                         height: 42.0,
@@ -114,9 +114,7 @@ class RegistrationView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
               ),
             ),
-          ),
         ),
-      ),
     );
   }
 }

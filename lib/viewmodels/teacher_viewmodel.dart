@@ -7,51 +7,43 @@ import 'package:skyline_template_app/locator.dart';
 import 'package:faker/faker.dart';
 
 class TeacherViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
+  final  _navigationService = locator<NavigationService>();
   List<Teacher> teachers = [];
+  bool pageLoaded = false;
 
-  TeacherViewModel() {
+  Future init() async {
+    print("Teacher ViewModel init()");
     setState(ViewState.Busy);
     try {
-      print("TeacherViewModel Constructor()");
-      _generateTeacherList(5);
+_generateTeacherList(5);
+pageLoaded = true;
     } catch (e) {
       setState(ViewState.Error);
     }
     setState(ViewState.Idle);
+
   }
 
   List _generateTeacherList(int teacherCount) {
-    for (int i = 0; i < teacherCount; i++) {
-      var faker = new Faker(); //this package generates fictitious info...
-      Teacher teacher = new Teacher(
-          uid: 'xxx$i',
-          firstName: faker.person.firstName(),
-          lastName: faker.person.lastName(),
-          nickName: 'Cool Teacher $i',
-          email: faker.internet.email());
-      teachers.add(teacher);
+    if (!pageLoaded == true)
+    for (int i =0; i < teacherCount; i++){
+      var faker = new Faker();//this package generates fictitious info...
+      Teacher teacher = new Teacher(uid: 'xxx$i', firstName: faker.person.firstName(), lastName: faker.person.lastName(), nickName: 'Cool Teacher $i', email: faker.internet.email() );
+    teachers.add(teacher);
     }
-    teachers.forEach((element) {
-      print('${element.firstName}, ${element.lastName}');
-    });
+    teachers.forEach((element) {print('${element.firstName}, ${element.lastName}');});
     return teachers;
   }
-
-  void addTeacher() {
-    var faker = new Faker(); //this package generates fictitious info...
-    Teacher teacher = new Teacher(
-        uid: 'xxx',
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        nickName: 'Cool Teacher ',
-        email: faker.internet.email());
+  void addTeacher(){
+    var faker = new Faker();//this package generates fictitious info...
+    Teacher teacher = new Teacher(uid: 'xxx', firstName: faker.person.firstName(), lastName: faker.person.lastName(), nickName: 'Cool Teacher ', email: faker.internet.email() );
     teachers.add(teacher);
     print('Adding ${teacher.firstName} as a new teacher');
     notifyListeners();
   }
 
-  void routeToHomeView() {
+  void routeToHomeView(){
     _navigationService.navigateTo(HomeViewRoute);
   }
+
 }

@@ -7,20 +7,27 @@ import 'package:skyline_template_app/core/utilities/route_names.dart';
 class HomeViewModel extends BaseViewModel {
   final  _navigationService = locator<NavigationService>();
 
-  HomeViewModel() {
+
+  Future init() async {
+    print("HomeViewModel init()");
     setState(ViewState.Busy);
     try {
-      print("HomeViewModel Constructor Called()");
+      _initMethod();
     } catch (e) {
       setState(ViewState.Error);
     }
     setState(ViewState.Idle);
+
+    }
+    
+    void _initMethod(){
+    for (int i = 0; i < 2; i++) {
+      print(
+          "HomeViewModel Init() function called printing $i iteration of my for loop");
+    }
     }
 
-  void routeToLoginView() {
-    _navigationService.navigateTo(LoginViewRoute);
-  }
-  void routeToRegistrationView() {
-    _navigationService.navigateTo(RegistrationViewRoute);
+  void routeToTeacherView() {
+    _navigationService.navigateTo(TeacherViewRoute);
   }
 }

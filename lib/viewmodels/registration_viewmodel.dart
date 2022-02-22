@@ -15,7 +15,7 @@ class RegistrationViewModel extends BaseViewModel {
     print("Registration ViewModel init()");
     setState(ViewState.Busy);
     try {
-   print('try reg');
+   print('try registration statement');
     } catch (e) {
       setState(ViewState.Error);
     }

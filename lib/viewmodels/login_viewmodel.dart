@@ -11,7 +11,7 @@ class LoginViewModel extends BaseViewModel {
     print("Login ViewModel init()");
     setState(ViewState.Busy);
     try {
-      print('try loging');
+      print('try login statement');
     } catch (e) {
       setState(ViewState.Error);
     }
